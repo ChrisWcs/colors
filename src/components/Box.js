@@ -1,17 +1,18 @@
 import React from 'react';
 
 const style = {
-    width: 100,
-    height: 100,
+    width: 20,
+    height: 20,
 };
 
-const Box = ({r, b, g, x, y, func}) => (
-    <div style={ {...style, ...{ 
+const Box = ({r, b, g, x, y, mousefunc, clickfunc}) => (
+    <button style={ {...style, ...{ 
         background: `rgb(${r},${g},${b})`,
-        width: `${100+x}px`,
-        height: `${100+y}px`,
+        width: `${20+x}px`,
+        height: `${20+y}px`,
     }} }
-    onDrag={func}/>
+    onClick={clickfunc}
+    onMouseMove={mousefunc}/>
 );
 
 export default Box;

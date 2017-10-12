@@ -10,25 +10,37 @@ class App extends Component {
     this.state = {
       x: 0,
       y: 0,
+      toggled: false,
     }
 
     this.onDrag = this.onDrag.bind(this);
+    this.handleclick = this.handleclick.bind(this);
   }
 
   onDrag(event){
-    const { clientX, clientY } = event;
+    if(this.state.toggled){
+      const { clientX, clientY } = event;
 
-    console.log(clientX + ", " + clientY);
+      console.log(clientX + ", " + clientY);
 
-    this.setState( () => ({
-      x: clientX,
-      y: clientY,
+      this.setState( () => ({
+        x: clientX,
+        y: clientY,
+      }));
+    }
+  }
+
+  handleclick(){
+    this.setState((prevState)=>({
+      toggled: !prevState.toggled
     }));
   }
 
   render(){
     return(
-      <Box r={50} g={100} b={200} x={this.state.x} y={this.state.y} func={this.onDrag}/>
+      <Box r={50} g={100} b={200} x={this.state.x} y={this.state.y} 
+            mousefunc={this.onDrag} 
+            clickfunc={this.handleclick}/>
     );
   }
 }
